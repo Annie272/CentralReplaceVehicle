@@ -86,109 +86,116 @@
         </div>
       </section>
 
-      <!-- Vehicle Details Section -->
-      <section class="bg-gray-50 border rounded-xl p-6 shadow-inner" aria-label="Vehicle Details Section">
-        <h3 class="text-xl font-semibold mb-4 text-gray-700">
-          Vehicle Details
-        </h3>
-       
-        <!-- VIN Number of New Vehicle -->
-        <div class="mb-4">
-          <label for="00NU7000006Knh3" class="block text-sm font-medium text-gray-700">
-            VIN Number of New Vehicle<span class="star">*</span>
-          </label>
-          <input
-            id="00NU7000006Knh3"
-            name="00NU7000006Knh3"
-            maxlength="255"
-            size="20"
-            type="text"
-            class="mt-1 w-full p-2 border border-gray-300 rounded-lg shadow-sm"
-            autocomplete="off"
-          />
-        </div>
-        <!-- Vehicle Year -->
-<div class="mb-4">
-  <label for="00NU7000007EGYk" class="block text-sm font-medium text-gray-700">
-    Vehicle Year<span class="star">*</span>
-  </label>
-  <input
-    id="00NU7000007EGYk"
-    name="00NU7000007EGYk"
-    maxlength="30"
-    size="20"
-    type="text"
-    class="mt-1 w-full p-2 border border-gray-300 rounded-lg shadow-sm"
-    autocomplete="off"
-  />
-</div>
+     <section class="bg-gray-50 border rounded-xl p-6 shadow-inner" aria-label="Vehicle Details Section">
+  <h3 class="text-xl font-semibold mb-4 text-gray-700">Vehicle Details</h3>
 
-<!-- Vehicle Name -->
-<div class="mb-4">
-  <label for="00NU70000063XnC" class="block text-sm font-medium text-gray-700">
-    Vehicle Name<span class="star">*</span>
-  </label>
-  <input
-    id="00NU70000063XnC"
-    name="00NU70000063XnC"
-    maxlength="255"
-    size="20"
-    type="text"
-    class="mt-1 w-full p-2 border border-gray-300 rounded-lg shadow-sm"
-    autocomplete="off"
-  />
-</div>
+  <!-- Old Vehicle Details Subsection (shaded box) -->
+  <div class="bg-gray-100 border border-gray-300 rounded-lg p-4 mb-6">
+     <div class="mb-2">
+    <span class="block text-lg font-medium text-gray-600">
+      Please enter the details of the Old Vehicle
+    </span>
+    <span class="block text-lg font-medium text-gray-600">
+      (Vehicle being Replaced)
+    </span>
+  </div>
+    <div class="mb-4">
+      <label for="00NU7000007EGYk" class="block text-sm font-medium text-gray-700">
+        Vehicle Year<span class="star">*</span>
+      </label>
+      <input
+        id="00NU7000007EGYk"
+        name="00NU7000007EGYk"
+        maxlength="30"
+        size="20"
+        type="text"
+        class="mt-1 w-full p-2 border border-gray-300 rounded-lg shadow-sm"
+        autocomplete="off"
+      />
+    </div>
+    <div class="mb-4">
+      <label for="00NU70000063XnC" class="block text-sm font-medium text-gray-700">
+        Vehicle Name<span class="star">*</span>
+      </label>
+      <input
+        id="00NU70000063XnC"
+        name="00NU70000063XnC"
+        maxlength="255"
+        size="20"
+        type="text"
+        class="mt-1 w-full p-2 border border-gray-300 rounded-lg shadow-sm"
+        autocomplete="off"
+      />
+    </div>
+  </div>
 
-        <!-- Purchase Date -->
-        <div class="mb-4">
-          <label for="00NU7000007Aop9" class="block text-sm font-medium text-gray-700">
-            Purchase Date<span class="star">*</span>
-          </label>
-          <span class="dateInput dateOnlyInput">
-            <input
-              id="00NU7000007Aop9"
-              name="00NU7000007Aop9"
-              size="12"
-              type="text"
-              placeholder="MM/DD/YYYY"
-              class="mt-1 w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
-              autocomplete="off"
-            />
-          </span>
-        </div>
-        <!-- Vehicle Use -->
-        <div class="mb-4">
-          <label for="00NU7000006N0iD" class="block text-sm font-medium text-gray-700">
-            Vehicle Use<span class="star">*</span>
-          </label>
-          <select id="00NU7000006N0iD" name="00NU7000006N0iD" title="Vehicle Use"
-            class="mt-1 w-full p-2 border border-gray-300 rounded-lg shadow-sm">
-            <option value=""></option>
-            <option value="Pleasure (0-2 Miles One Way)">Pleasure (0-2 Miles One Way)</option>
-            <option value="Work Less than 15 Miles One Way">Work Less than 15 Miles One Way</option>
-            <option value="Work 15 Miles or More One Way">Work 15 Miles or More One Way</option>
-            <option value="Business">Business</option>
-            <option value="Farm">Farm</option>
-          </select>
-        </div>
-        <!-- Annual Miles -->
-        <div class="mb-4">
-  <label for="00NU7000007CAlx" class="block text-sm font-medium text-gray-700">
-    Annual Miles<span class="star">*</span>
-  </label>
-  <input
-    id="00NU7000007CAlx"
-    name="00NU7000007CAlx"
-    size="20"
-    type="number"
-    class="mt-1 w-full p-2 border border-gray-300 rounded-lg shadow-sm"
-    min="0"
-    step="1"
-    autocomplete="off"
-  />
-</div>
+  <!-- VIN Number of New Vehicle -->
+  <div class="mb-4">
+    <label for="00NU7000006Knh3" class="block text-sm font-medium text-gray-700">
+      VIN Number of New Vehicle<span class="star">*</span>
+    </label>
+    <input
+      id="00NU7000006Knh3"
+      name="00NU7000006Knh3"
+      maxlength="255"
+      size="20"
+      type="text"
+      class="mt-1 w-full p-2 border border-gray-300 rounded-lg shadow-sm"
+      autocomplete="off"
+    />
+  </div>
+  <!-- Purchase Date -->
+  <div class="mb-4">
+    <label for="00NU7000007Aop9" class="block text-sm font-medium text-gray-700">
+      Purchase Date<span class="star">*</span>
+    </label>
+    <span class="dateInput dateOnlyInput">
+      <input
+        id="00NU7000007Aop9"
+        name="00NU7000007Aop9"
+        size="12"
+        type="text"
+        placeholder="MM/DD/YYYY"
+        class="mt-1 w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
+        autocomplete="off"
+      />
+    </span>
+  </div>
 
-      </section>
+  <!-- Vehicle Use -->
+  <div class="mb-4">
+    <label for="00NU7000006N0iD" class="block text-sm font-medium text-gray-700">
+      Vehicle Use<span class="star">*</span>
+    </label>
+    <select id="00NU7000006N0iD" name="00NU7000006N0iD" title="Vehicle Use"
+      class="mt-1 w-full p-2 border border-gray-300 rounded-lg shadow-sm">
+      <option value=""></option>
+      <option value="Pleasure (0-2 Miles One Way)">Pleasure (0-2 Miles One Way)</option>
+      <option value="Work Less than 15 Miles One Way">Work Less than 15 Miles One Way</option>
+      <option value="Work 15 Miles or More One Way">Work 15 Miles or More One Way</option>
+      <option value="Business">Business</option>
+      <option value="Farm">Farm</option>
+    </select>
+  </div>
+
+  <!-- Annual Miles -->
+  <div class="mb-4">
+    <label for="00NU7000007CAlx" class="block text-sm font-medium text-gray-700">
+      Annual Miles<span class="star">*</span>
+    </label>
+    <input
+      id="00NU7000007CAlx"
+      name="00NU7000007CAlx"
+      size="20"
+      type="number"
+      class="mt-1 w-full p-2 border border-gray-300 rounded-lg shadow-sm"
+      min="0"
+      step="1"
+      autocomplete="off"
+    />
+  </div>
+</section>
+
       
      <!-- Coverages Section -->
 <section class="bg-gray-50 border rounded-xl p-6 shadow-inner" aria-label="Coverages Section">
@@ -273,51 +280,6 @@
     autocomplete="off"
   />
 </div>
-
-
-  <div class="mb-4">
-    <label for="00NU7000007ALrx" class="block text-sm font-medium text-gray-700">
-      Towing and Labor<span class="star">*</span>
-    </label>
-    <select id="00NU7000007ALrx" name="00NU7000007ALrx" title="Towing and Labor"
-      class="mt-1 w-full p-2 border border-gray-300 rounded-lg shadow-sm">
-      <option value="No Towing and Labor">No Towing and Labor</option>
-      <option value="25 Per Disablement">25 Per Disablement</option>
-      <option value="50 Per Disablement">50 Per Disablement</option>
-      <option value="75 Per Disablement">75 Per Disablement</option>
-      <option value="100 Per Disablement">100 Per Disablement</option>
-      <option value="150 Per Disablement">150 Per Disablement</option>
-      <option value="200 Per Disablement">200 Per Disablement</option>
-      <option value="250 Per Disablement">250 Per Disablement</option>
-    </select>
-  </div>
-  <div class="mb-4">
-    <label for="00NU7000007AP9B" class="block text-sm font-medium text-gray-700">
-      Excess Electronic Equipment<span class="star">*</span>
-    </label>
-    <select id="00NU7000007AP9B" name="00NU7000007AP9B" title="Excess Electronic Equipment"
-      class="mt-1 w-full p-2 border border-gray-300 rounded-lg shadow-sm">
-      <option value="No Excess Electronic Equipment Coverage">No Excess Electronic Equipment Coverage</option>
-      <option value="1500 maximum limit of liability">1500 maximum limit of liability</option>
-      <option value="2000 maximum limit of liability">2000 maximum limit of liability</option>
-      <option value="2500 maximum limit of liability">2500 maximum limit of liability</option>
-      <option value="3000 maximum limit of liability">3000 maximum limit of liability</option>
-      <option value="3500 maximum limit of liability">3500 maximum limit of liability</option>
-      <option value="4000 maximum limit of liability">4000 maximum limit of liability</option>
-      <option value="4500 maximum limit of liability">4500 maximum limit of liability</option>
-      <option value="5000 maximum limit of liability">5000 maximum limit of liability</option>
-      <option value="5500 maximum limit of liability">5500 maximum limit of liability</option>
-      <option value="6000 maximum limit of liability">6000 maximum limit of liability</option>
-      <option value="6500 maximum limit of liability">6500 maximum limit of liability</option>
-      <option value="7000 maximum limit of liability">7000 maximum limit of liability</option>
-      <option value="7500 maximum limit of liability">7500 maximum limit of liability</option>
-      <option value="8000 maximum limit of liability">8000 maximum limit of liability</option>
-      <option value="8500 maximum limit of liability">8500 maximum limit of liability</option>
-      <option value="9000 maximum limit of liability">9000 maximum limit of liability</option>
-      <option value="9500 maximum limit of liability">9500 maximum limit of liability</option>
-      <option value="10000 maximum limit of liability">10000 maximum limit of liability</option>
-    </select>
-  </div>
   <div class="mb-4">
     <label for="00NU7000007APab" class="block text-sm font-medium text-gray-700">
       Lease/Loan Guard<span class="star">*</span>
