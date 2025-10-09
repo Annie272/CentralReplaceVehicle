@@ -9,7 +9,6 @@
       .hidden { display: none; }
       .star { color: #ef4444; margin-left: 2px; }
       .modal-bg { background: rgba(0,0,0,0.4);}
-      
     </style>
   </head>
   <body class="bg-gray-100 flex items-center justify-center min-h-screen p-6">
@@ -92,8 +91,8 @@
           />
         </div>
       </section>
-
-     <section class="bg-gray-50 border rounded-xl p-6 shadow-inner" aria-label="Vehicle Details Section">
+      
+      <section class="bg-gray-50 border rounded-xl p-6 shadow-inner" aria-label="Vehicle Details Section">
   <h3 class="text-xl font-semibold mb-4 text-gray-700">Vehicle Details</h3>
 
   <!-- Old Vehicle Details Subsection (shaded box) -->
@@ -183,23 +182,6 @@
       <option value="Business">Business</option>
       <option value="Farm">Farm</option>
     </select>
-  </div>
-
-  <!-- Annual Miles -->
-  <div class="mb-4">
-    <label for="00NU7000007CAlx" class="block text-sm font-medium text-gray-700">
-      Annual Miles<span class="star">*</span>
-    </label>
-    <input
-      id="00NU7000007CAlx"
-      name="00NU7000007CAlx"
-      size="20"
-      type="number"
-      class="mt-1 w-full p-2 border border-gray-300 rounded-lg shadow-sm"
-      min="0"
-      step="1"
-      autocomplete="off"
-    />
   </div>
 </section>
 
@@ -371,7 +353,7 @@
   </div>
   <div class="mb-4">
   <label for="00NU7000007CBN3" class="block text-sm font-medium text-gray-700">
-    Name Continued
+    Name Continued<span class="star">*</span>
   </label>
   <input
     id="00NU7000007CBN3"
@@ -498,6 +480,7 @@
       <input type="hidden" name="company" value="Caelius Test Central Replace Vehicle" />
       <input type="hidden" name="Debug_Notes__c" value="Safeco Test: 2025-06-27 07:21AM" />
 
+
       <div class="flex justify-end mt-6">
         <button
           type="button"
@@ -539,213 +522,225 @@
 
     <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
     <script>
-  document.addEventListener("DOMContentLoaded", function () {
-  // Pikaday date pickers setup
-  if (window.Pikaday) {
-    new Pikaday({
-      field: document.getElementById("00NU7000005zuLl"),
-      format: "MM/DD/YYYY",
-      toString(date) {
-        const d = String(date.getDate()).padStart(2, "0");
-        const m = String(date.getMonth() + 1).padStart(2, "0");
-        const y = date.getFullYear();
-        return `${m}/${d}/${y}`;
-      },
-      parse(dateString) {
-        const [m, d, y] = dateString.split("/");
-        return new Date(y, m - 1, d);
-      },
-    });
-    new Pikaday({
-      field: document.getElementById("00NU7000007Aop9"),
-      format: "MM/DD/YYYY",
-      toString(date) {
-        const d = String(date.getDate()).padStart(2, "0");
-        const m = String(date.getMonth() + 1).padStart(2, "0");
-        const y = date.getFullYear();
-        return `${m}/${d}/${y}`;
-      },
-      parse(dateString) {
-        const [m, d, y] = dateString.split("/");
-        return new Date(y, m - 1, d);
-      },
-    });
-  }
+    document.addEventListener("DOMContentLoaded", function () {
+      if (window.Pikaday) {
+        new Pikaday({
+          field: document.getElementById("00NU7000005zuLl"),
+          format: "MM/DD/YYYY",
+          toString(date) {
+            const d = String(date.getDate()).padStart(2, "0");
+            const m = String(date.getMonth() + 1).padStart(2, "0");
+            const y = date.getFullYear();
+            return `${m}/${d}/${y}`;
+          },
+          parse(dateString) {
+            const [m, d, y] = dateString.split("/");
+            return new Date(y, m - 1, d);
+          },
+        });
+        new Pikaday({
+          field: document.getElementById("00NU7000007Aop9"),
+          format: "MM/DD/YYYY",
+          toString(date) {
+            const d = String(date.getDate()).padStart(2, "0");
+            const m = String(date.getMonth() + 1).padStart(2, "0");
+            const y = date.getFullYear();
+            return `${m}/${d}/${y}`;
+          },
+          parse(dateString) {
+            const [m, d, y] = dateString.split("/");
+            return new Date(y, m - 1, d);
+          },
+        });
+      }
 
-  const leaseRadios = document.querySelectorAll('input[name="00NU7000007AxFi"]');
-  const loanFieldDiv = document.getElementById("secondAddressFieldDiv");
-  const loanFieldOptions = document.getElementById("secondAddressFieldOptions");
-  const lossPayeeSection = document.getElementById("lossPayeeSection");
-  const lossPayeeHeader = lossPayeeSection.querySelector("h3");
+      // RADIO to select mapping for Quote/Endorsement
+      const radioQuote = document.querySelector('input[name="requestTypeRadios"][value="Y"]');
+      const radioEndorse = document.querySelector('input[name="requestTypeRadios"][value="N"]');
+      const selectField = document.getElementById("00NU7000006IOzh");
 
-  function showLossPayeeSection(show, headerText) {
-    if (show) {
-      lossPayeeHeader.textContent = headerText;
-      lossPayeeSection.style.display = "block";
-    } else {
-      lossPayeeSection.style.display = "none";
-      lossPayeeHeader.textContent = "";
-      lossPayeeSection.querySelectorAll("input, select").forEach((el) => {
-        if (el.type === "radio" || el.type === "checkbox") {
-          el.checked = false;
+      function syncSelectWithRadio() {
+        if (radioQuote.checked) {
+          selectField.value = "Y";
+        } else if (radioEndorse.checked) {
+          selectField.value = "N";
         } else {
-          el.value = "";
+          selectField.value = "";
+        }
+      }
+      // Initial mapping
+      syncSelectWithRadio();
+      // Event listeners for both radios
+      radioQuote.addEventListener("change", syncSelectWithRadio);
+      radioEndorse.addEventListener("change", syncSelectWithRadio);
+
+      // ...rest of JS unchanged, including loan/lease logic, validation, dialog functions, etc...
+
+      // Insert remainder of original script code...
+      const leaseRadios = document.querySelectorAll('input[name="00NU7000007AxFi"]');
+      const loanFieldDiv = document.getElementById("secondAddressFieldDiv");
+      const loanFieldOptions = document.getElementById("secondAddressFieldOptions");
+      const lossPayeeSection = document.getElementById("lossPayeeSection");
+      const lossPayeeHeader = lossPayeeSection.querySelector("h3");
+
+      function showLossPayeeSection(show, headerText) {
+        if (show) {
+          lossPayeeHeader.textContent = headerText;
+          lossPayeeSection.style.display = "block";
+        } else {
+          lossPayeeSection.style.display = "none";
+          lossPayeeHeader.textContent = "";
+          lossPayeeSection.querySelectorAll("input, select").forEach((el) => {
+            if (el.type === "radio" || el.type === "checkbox") {
+              el.checked = false;
+            } else {
+              el.value = "";
+            }
+          });
+        }
+      }
+
+      function updateUI() {
+        const leaseVal = document.querySelector('input[name="00NU7000007AxFi"]:checked')?.value;
+        const loanVal = document.querySelector('input[name="00NU7000007Axvd"]:checked')?.value;
+
+        if (leaseVal === "Y") {
+          loanFieldDiv.style.display = "none";
+          showLossPayeeSection(true, "Loss Payee & Additional Insured (Lessor)");
+        } else if (leaseVal === "N") {
+          loanFieldDiv.style.display = "block";
+          loanFieldOptions.style.display = "flex";
+          if (loanVal === "Y") {
+            showLossPayeeSection(true, "Loan Information");
+          } else {
+            showLossPayeeSection(false, "");
+          }
+        } else {
+          loanFieldDiv.style.display = "block";
+          loanFieldOptions.style.display = "flex";
+          showLossPayeeSection(false, "");
+        }
+      }
+
+      leaseRadios.forEach((radio) => {
+        radio.addEventListener("change", () => {
+          document.querySelectorAll('input[name="00NU7000007Axvd"]').forEach((el) => (el.checked = false));
+          updateUI();
+        });
+      });
+
+      loanFieldDiv.querySelectorAll('input[name="00NU7000007Axvd"]').forEach((radio) => {
+        radio.addEventListener("change", updateUI);
+      });
+
+      updateUI();
+
+      // Updated validation to skip loan question if hidden
+      const requiredFields = [
+        { id: "email", label: "Email", type: "email" },
+        { radioGroupName: "requestTypeRadios", label: "Select the Request Type:" }, // updated radio group name
+        { id: "00NU7000007EGYk", label: "Vehicle Year" },
+        { id: "00NU70000063XnC", label: "Vehicle Name" },
+        { id: "00NU7000005zuX3", label: "Policy Number" },
+        { id: "00NU7000005zuLl", label: "Effective Date (MM/DD/YYYY)", type: "date" },
+        { id: "00NU7000006Knh3", label: "VIN Number of New Vehicle" },
+        { id: "00NU7000007Aop9", label: "Purchase Date", type: "date" },
+        { id: "00NU7000006N0iD", label: "Vehicle Use" },
+        { id: "00NU7000007ALC1", label: "Other than Collision" },
+        { id: "00NU700000618cn", label: "Collision" },
+        { id: "00NU7000007AORd", label: "Extended Transportation" },
+        { id: "00NU7000007CApB", label: "Excess Custom Equipment Coverage" },
+        { id: "00NU7000007ALrx", label: "Towing and Labor" },
+        { id: "00NU7000007AP9B", label: "Excess Electronic Equipment" },
+        { id: "00NU7000007APab", label: "Lease/Loan Guard" },
+        { id: "00NU7000007APfR", label: "Trip Interruption Coverage" },
+        { radioGroupName: "00NU7000007AxFi", label: "Is this vehicle leased?" },
+        { radioGroupName: "00NU7000007Axvd", label: "Is there a Loan for this vehicle?" },
+        { id: "00NU7000006YQuN", label: "Loss Payee Name" },
+        { id: "00NU7000007CBN3", label: "Name Continued" },
+        { id: "00NU7000007AyLR", label: "Loss Payee Mailing Address" },
+        { id: "00NU7000005zvUj", label: "Loss Payee City" },
+        { id: "00NU7000005zvWL", label: "Loss Payee State" },
+        { id: "00NU7000005zw7R", label: "Loss Payee Zip Code" }
+      ];
+
+      function validateFields() {
+        const missing = [];
+
+        requiredFields.forEach((field) => {
+          if (field.radioGroupName === "00NU7000007Axvd" && loanFieldDiv.style.display === "none") {
+            return;
+          }
+          if (field.radioGroupName) {
+            let radios;
+            radios = document.querySelectorAll(`input[name="${field.radioGroupName}"]`);
+            if (!radios.length) return;
+            const checked = [...radios].some((r) => r.checked);
+            if (!checked) missing.push(field.label);
+            return;
+          }
+          const el = document.getElementById(field.id);
+          const lossFields = [
+            "00NU7000006YQuN","00NU7000007AyLR","00NU7000005zvUj",
+            "00NU7000005zvWL","00NU7000005zw7R","00NU7000007CBN3"
+          ];
+          if (lossFields.includes(field.id) && lossPayeeSection.style.display === "none") return;
+          if (field.type === "email") {
+            if (!el.value.trim() || !el.checkValidity()) missing.push(field.label);
+          } else if (field.type === "date") {
+            const val = el.value.trim();
+            const dateRegex = /^(0[1-9]|1[0-2])\/(0[1-9]|[12][0-9]|3[01])\/(1[0-9]{3}|2[0-9]{3}|30[0-9]{2})$/;
+            if (!val || !dateRegex.test(val)) missing.push(field.label);
+          } else {
+            if (!el || !el.value.trim()) missing.push(field.label);
+          }
+        });
+        return missing;
+      }
+
+      const form = document.getElementById("mainForm");
+      const reviewBtn = document.getElementById("reviewBtn");
+      const dialog = document.getElementById("dialog");
+      const dialogTitle = document.getElementById("dialogTitle");
+      const missingFieldsList = document.getElementById("missingFieldsList");
+      const proceedBtn = document.getElementById("proceedBtn");
+      const editBtn = document.getElementById("editBtn");
+
+      form.addEventListener("submit", (e) => e.preventDefault());
+
+      reviewBtn.addEventListener("click", () => {
+        const missing = validateFields();
+        if (missing.length) {
+          dialogTitle.textContent = "Below Mandatory Fields are missing and the Team will contact you shortly.";
+          missingFieldsList.innerHTML = missing.map((f) => `<li>${f}</li>`).join("");
+        } else {
+          dialogTitle.textContent = "All mandatory fields are completed. Ready to submit your request?";
+          missingFieldsList.innerHTML = "";
+        }
+        dialog.classList.remove("hidden");
+      });
+
+      editBtn.addEventListener("click", () => {
+        dialog.classList.add("hidden");
+      });
+
+      proceedBtn.addEventListener("click", () => {
+        dialog.classList.add("hidden");
+        form.submit();
+      });
+
+      window.addEventListener("click", (e) => {
+        if (e.target === dialog) {
+          dialog.classList.add("hidden");
         }
       });
-    }
-  }
 
-  function updateUI() {
-    const leaseVal = document.querySelector('input[name="00NU7000007AxFi"]:checked')?.value;
-    const loanVal = document.querySelector('input[name="00NU7000007Axvd"]:checked')?.value;
-
-    if (leaseVal === "Y") {
-      // Hide entire loan question div for Case 1
-      loanFieldDiv.style.display = "none";
-      showLossPayeeSection(true, "Loss Payee & Additional Insured (Lessor)");
-    } else if (leaseVal === "N") {
-      loanFieldDiv.style.display = "block";
-      loanFieldOptions.style.display = "flex"; // ensure radios visible
-      if (loanVal === "Y") {
-        showLossPayeeSection(true, "Loan Information");
-      } else {
-        showLossPayeeSection(false, "");
-      }
-    } else {
-      loanFieldDiv.style.display = "block";
-      loanFieldOptions.style.display = "flex";
-      showLossPayeeSection(false, "");
-    }
-  }
-
-  leaseRadios.forEach((radio) => {
-    radio.addEventListener("change", () => {
-      // Clear loan radios on lease change
-      document.querySelectorAll('input[name="00NU7000007Axvd"]').forEach((el) => (el.checked = false));
-      updateUI();
-    });
-  });
-
-  loanFieldDiv.querySelectorAll('input[name="00NU7000007Axvd"]').forEach((radio) => {
-    radio.addEventListener("change", updateUI);
-  });
-
-  updateUI();
-
-  // Updated validation to skip loan question if hidden
-  const requiredFields = [
-    { id: "email", label: "Email", type: "email" },
-    { radioGroupName: "00NU7000006IOzh", label: "Is this a quote or a change request?" },
-    { id: "00NU7000007EGYk", label: "Vehicle Year" },
-    { id: "00NU70000063XnC", label: "Vehicle Name" },
-    { id: "00NU7000005zuX3", label: "Policy Number" },
-    { id: "00NU7000005zuLl", label: "Effective Date (MM/DD/YYYY)", type: "date" },
-    { id: "00NU7000006Knh3", label: "VIN Number of New Vehicle" },
-    { id: "00NU7000007Aop9", label: "Purchase Date", type: "date" },
-    { id: "00NU7000006N0iD", label: "Vehicle Use" },
-    { id: "00NU7000007CAlx", label: "Annual Miles" },
-    { id: "00NU7000007ALC1", label: "Other than Collision" },
-    { id: "00NU700000618cn", label: "Collision" },
-    { id: "00NU7000007AORd", label: "Extended Transportation" },
-    { id: "00NU7000007CApB", label: "Excess Custom Equipment Coverage" },
-    { id: "00NU7000007APab", label: "Lease/Loan Guard" },
-    { id: "00NU7000007APfR", label: "Trip Interruption Coverage" },
-    { radioGroupName: "00NU7000007AxFi", label: "Is this vehicle leased?" },
-    { radioGroupName: "00NU7000007Axvd", label: "Is there a Loan for this vehicle?" },
-    { id: "00NU7000006YQuN", label: "Loss Payee Name" },
-    //{ id: "00NU7000007CBN3", label: "Name Continued" },
-    { id: "00NU7000007AyLR", label: "Loss Payee Mailing Address" },
-    { id: "00NU7000005zvUj", label: "Loss Payee City" },
-    { id: "00NU7000005zvWL", label: "Loss Payee State" },
-    { id: "00NU7000005zw7R", label: "Loss Payee Zip Code" }
-  ];
-
-  function validateFields() {
-    const missing = [];
-
-    requiredFields.forEach((field) => {
-      // Skip loan question validation if hidden and updated
-      if (field.radioGroupName === "00NU7000007Axvd" && loanFieldDiv.style.display === "none") {
-        return;
-      }
-
-      if (field.radioGroupName) {
-        let radios;
-        if (field.radioGroupName === 'lossPayeeSame') {
-          radios = loanFieldOptions.querySelectorAll('input[name="lossPayeeSame"]');
-        } else {
-          radios = document.querySelectorAll(`input[name="${field.radioGroupName}"]`);
+      window.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && !dialog.classList.contains("hidden")) {
+          dialog.classList.add("hidden");
         }
-        if (!radios.length) return;
-        const checked = [...radios].some((r) => r.checked);
-        if (!checked) missing.push(field.label);
-        return;
-      }
-      const el = document.getElementById(field.id);
-      const lossFields = [
-        "00NU7000006YQuN","00NU7000007AyLR","00NU7000005zvUj",
-        "00NU7000005zvWL","00NU7000005zw7R","00NU7000007CBN3"
-      ];
-      if (lossFields.includes(field.id) && lossPayeeSection.style.display === "none") return;
-      if (field.type === "email") {
-        if (!el.value.trim() || !el.checkValidity()) missing.push(field.label);
-      } else if (field.type === "date") {
-        const val = el.value.trim();
-        const dateRegex = /^(0[1-9]|1[0-2])\/(0[1-9]|[12][0-9]|3[01])\/(1[0-9]{3}|2[0-9]{3}|30[0-9]{2})$/;
-        
-        if (!val || !dateRegex.test(val)) missing.push(field.label);
-      } else {
-        if (!el || !el.value.trim()) missing.push(field.label);
-      }
+      });
     });
-    return missing;
-  }
-
-  const form = document.getElementById("mainForm");
-  const reviewBtn = document.getElementById("reviewBtn");
-  const dialog = document.getElementById("dialog");
-  const dialogTitle = document.getElementById("dialogTitle");
-  const missingFieldsList = document.getElementById("missingFieldsList");
-  const proceedBtn = document.getElementById("proceedBtn");
-  const editBtn = document.getElementById("editBtn");
-
-  form.addEventListener("submit", (e) => e.preventDefault());
-
-  reviewBtn.addEventListener("click", () => {
-    const missing = validateFields();
-    if (missing.length) {
-      dialogTitle.textContent = "Below Mandatory Fields are missing and the Team will contact you shortly.";
-      missingFieldsList.innerHTML = missing.map((f) => `<li>${f}</li>`).join("");
-    } else {
-      dialogTitle.textContent = "All mandatory fields are completed. Ready to submit your request?";
-      missingFieldsList.innerHTML = "";
-    }
-    dialog.classList.remove("hidden");
-  });
-
-  editBtn.addEventListener("click", () => {
-    dialog.classList.add("hidden");
-  });
-
-  proceedBtn.addEventListener("click", () => {
-    dialog.classList.add("hidden");
-    form.submit();
-  });
-
-  window.addEventListener("click", (e) => {
-    if (e.target === dialog) {
-      dialog.classList.add("hidden");
-    }
-  });
-
-  window.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && !dialog.classList.contains("hidden")) {
-      dialog.classList.add("hidden");
-    }
-  });
-});
-
-</script>
-
+    </script>
   </body>
 </html>
