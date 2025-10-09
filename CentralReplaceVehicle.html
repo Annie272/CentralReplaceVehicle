@@ -663,7 +663,7 @@
     const missing = [];
 
     requiredFields.forEach((field) => {
-      // Skip loan question validation if hidden
+      // Skip loan question validation if hidden and updated
       if (field.radioGroupName === "00NU7000007Axvd" && loanFieldDiv.style.display === "none") {
         return;
       }
