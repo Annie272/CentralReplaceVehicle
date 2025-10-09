@@ -43,16 +43,22 @@
 
         <fieldset class="mb-4">
           <legend class="block text-sm font-medium text-gray-700 mb-1">
-            Is this a quote or a change request?<span class="star">*</span>
+            Select the Request Type:<span class="star">*</span>
           </legend>
           <div class="flex space-x-6">
             <label class="inline-flex items-center">
-              <input type="radio" name="00NU7000006IOzh" value="Y" class="mr-2" />Yes
+              <input type="radio" name="requestTypeRadios" value="Y" class="mr-2" />Quote
             </label>
             <label class="inline-flex items-center">
-              <input type="radio" name="00NU7000006IOzh" value="N" class="mr-2" />No
+              <input type="radio" name="requestTypeRadios" value="N" class="mr-2" />Endorsement
             </label>
           </div>
+          <!-- Hidden original select mapped to radios -->
+          <select id="00NU7000006IOzh" name="00NU7000006IOzh" class="hidden">
+            <option value=""></option>
+            <option value="Y">Y</option>
+            <option value="N">N</option>
+          </select>
         </fieldset>
 
         <input type="hidden" name="00NU7000005zuNN" id="00NU7000005zuNN" value="Replace Vehicle" />
