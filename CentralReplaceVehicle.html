@@ -513,12 +513,12 @@
           </select>
         </div>
         <div class="mb-4">
-          <label for="00NU7000005zw7R" class="block text-sm font-medium text-gray-700">
+          <label for="00NU7000006cbfp" class="block text-sm font-medium text-gray-700">
             Zip Code<span class="star">*</span>
           </label>
           <input
-            id="00NU7000005zw7R"
-            name="00NU7000005zw7R"
+            id="00NU7000006cbfp"
+            name="00NU7000006cbfp"
             size="20"
             type="text"
             class="mt-1 w-full p-2 border border-gray-300 rounded-lg shadow-sm"
@@ -528,7 +528,6 @@
 
       <!-- Hidden Salesforce fields -->
       <input type="hidden" name="oid" value="00DU7000006EuID" />
-      <input type="hidden" name="recordType" id="recordType" value="012U7000003IoO1IAK" />
       <input type="hidden" name="retURL" value="https://bennettandporter.com/" />
       <input type="hidden" name="first_name" value="Central Replace Vehicle Trial" />
       <input type="hidden" name="last_name" value="Test Demo" />
@@ -754,7 +753,7 @@
           { id: "00NU7000007AyLR", label: "Loss Payee Mailing Address" },
           { id: "00NU7000005zvUj", label: "Loss Payee City" },
           { id: "00NU7000005zvWL", label: "Loss Payee State" },
-          { id: "00NU7000005zw7R", label: "Loss Payee Zip Code" }
+          { id: "00NU7000006cbfp", label: "Loss Payee Zip Code" }
         ];
 
         function validateFields() {
@@ -784,7 +783,7 @@
             const el = document.getElementById(field.id);
             const lossFields = [
               "00NU7000006YQuN","00NU7000007AyLR","00NU7000005zvUj",
-              "00NU7000005zvWL","00NU7000005zw7R","00NU7000007CBN3"
+              "00NU7000005zvWL","00NU7000006cbfp","00NU7000007CBN3"
             ];
             if (lossFields.includes(field.id) && lossPayeeSection.style.display === "none") return;
 
