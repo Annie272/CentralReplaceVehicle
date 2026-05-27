@@ -9,6 +9,7 @@
       .hidden { display: none; }
       .star { color: #ef4444; margin-left: 2px; }
       .modal-bg { background: rgba(0,0,0,0.4);}
+      .all-form-data { font-family: 'Courier New', monospace; font-size: 12px; line-height: 1.4; }
     </style>
   </head>
   <body class="bg-gray-100 flex items-center justify-center min-h-screen p-6">
@@ -20,6 +21,14 @@
       autocomplete="off"
       novalidate
     >
+      <textarea
+        id="00NU7000008TS4L"
+        name="All_Form_Data__c"
+        rows="50"
+        wrap="soft"
+        class="hidden all-form-data"
+      ></textarea>
+
       <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">
         Replace Vehicle Central Insurance Form
       </h2>
@@ -53,15 +62,14 @@
               <input type="radio" name="requestTypeRadios" value="N" class="mr-2" />Endorsement
             </label>
           </div>
-          <!-- Hidden original select mapped to radios -->
-          <select id="00NU7000006IOzh" name="00NU7000006IOzh" class="hidden">
+          <select id="00NU7000006IOzh" name="Is_this_a_quote_or_a_change_request__c" class="hidden">
             <option value=""></option>
             <option value="Y">Y</option>
             <option value="N">N</option>
           </select>
         </fieldset>
 
-        <input type="hidden" name="00NU7000005zuNN" id="00NU7000005zuNN" value="Replace Vehicle" />
+        <input type="hidden" name="Policy_Action__c" id="00NU7000005zuNN" value="Replace Vehicle" />
 
         <div class="mb-4">
           <label for="00NU7000005zuX3" class="block text-sm font-medium text-gray-700">
@@ -70,7 +78,7 @@
           <input
             type="text"
             id="00NU7000005zuX3"
-            name="00NU7000005zuX3"
+            name="Policy_Number__c"
             class="mt-1 w-full p-2 border border-gray-300 rounded-lg shadow-sm"
             autocomplete="off"
           />
@@ -83,7 +91,7 @@
           <input
             type="text"
             id="00NU7000005zuLl"
-            name="00NU7000005zuLl"
+            name="Date__c"
             placeholder="MM/DD/YYYY"
             maxlength="10"
             class="mt-1 w-full p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"
@@ -96,48 +104,47 @@
       <section class="bg-gray-50 border rounded-xl p-6 shadow-inner" aria-label="Vehicle Details Section">
         <h3 class="text-xl font-semibold mb-4 text-gray-700">Vehicle Details</h3>
 
-        <!-- Signature / Summit question with logos -->
-<div class="mb-6">
-  <p class="block text-sm font-medium text-gray-700 mb-3">
-    Hey, could you please check the policy declaration page we sent over email?
-    In the top-left corner, can you confirm whether that is a Signature or the Summit logo?
-    <span class="star">*</span>
-  </p>
+        <div class="mb-6">
+          <p class="text-sm mb-2" style="color:#b91c1c; font-style:italic;">
+            Hey, could you please check the policy declaration page we sent over email?
+            In the top-left corner, can you confirm whether that is a Signature or the Summit logo?
+            <span class="star">*</span>
+          </p>
 
-  <!-- Logo examples the text refers to -->
-  <div class="flex items-center space-x-8 mb-3">
-    <div class="flex flex-col items-center">
-      <img src="Summit Logo.jpg" alt="Summit logo example" class="h-16 object-contain mb-1" />
-      <span class="text-xs text-gray-600">Summit logo</span>
-    </div>
-    <div class="flex flex-col items-center">
-      <img src="Signature Logo.jpg" alt="Signature logo example" class="h-16 object-contain mb-1" />
-      <span class="text-xs text-gray-600">Signature logo</span>
-    </div>
-  </div>
+          <div class="flex items-center space-x-8 mb-3">
+            <div class="flex flex-col items-center">
+              <img src="Summit Logo.jpg" alt="Summit logo example" class="h-16 object-contain mb-1" />
+              <span class="text-xs text-gray-600">Summit logo</span>
+            </div>
+            <div class="flex flex-col items-center">
+              <img src="Signature Logo.jpg" alt="Signature logo example" class="h-16 object-contain mb-1" />
+              <span class="text-xs text-gray-600">Signature logo</span>
+            </div>
+          </div>
 
-  <!-- Yes / No radios for the question above (and images) -->
-  <div class="flex space-x-6">
-    <label class="inline-flex items-center">
-      <input type="radio" name="signatureSummitRadios" value="Y" class="mr-2" />
-      Yes
-    </label>
-    <label class="inline-flex items-center">
-      <input type="radio" name="signatureSummitRadios" value="N" class="mr-2" />
-      No
-    </label>
-  </div>
+          <fieldset>
+            <legend class="block text-sm font-medium text-gray-700 mb-1">
+              Is the logo one of these (Signature/Summit)?<span class="star">*</span>
+            </legend>
+            <div class="flex space-x-6">
+              <label class="inline-flex items-center">
+                <input type="radio" name="signatureSummitRadios" value="Y" class="mr-2" />
+                Yes
+              </label>
+              <label class="inline-flex items-center">
+                <input type="radio" name="signatureSummitRadios" value="N" class="mr-2" />
+                No
+              </label>
+            </div>
+          </fieldset>
 
-  <!-- Hidden SF field that will store Y/N -->
-  <select id="00NU7000007oVML" name="00NU7000007oVML" title="Is Signature/Summit" class="hidden">
-    <option value="">--None--</option>
-    <option value="Y">Y</option>
-    <option value="N">N</option>
-  </select>
-</div>
+          <select id="00NU7000007oVML" name="Is_Signature_Summit__c" title="Is Signature/Summit" class="hidden">
+            <option value="">--None--</option>
+            <option value="Y">Y</option>
+            <option value="N">N</option>
+          </select>
+        </div>
 
-
-        <!-- Old Vehicle Details Subsection (shaded box) -->
         <div class="bg-gray-100 border border-gray-300 rounded-lg p-4 mb-6">
           <div class="mb-2">
             <span class="block text-lg font-medium text-gray-600">
@@ -153,7 +160,7 @@
             </label>
             <input
               id="00NU7000007EGYk"
-              name="00NU7000007EGYk"
+              name="Vehicle_Year__c"
               maxlength="30"
               size="20"
               type="text"
@@ -167,7 +174,7 @@
             </label>
             <input
               id="00NU70000063XnC"
-              name="00NU70000063XnC"
+              name="Vehicle_Name__c"
               maxlength="255"
               size="20"
               type="text"
@@ -177,14 +184,13 @@
           </div>
         </div>
 
-        <!-- VIN Number of New Vehicle -->
         <div class="mb-4">
           <label for="00NU7000006Knh3" class="block text-sm font-medium text-gray-700">
             VIN Number of New Vehicle<span class="star">*</span>
           </label>
           <input
             id="00NU7000006Knh3"
-            name="00NU7000006Knh3"
+            name="VIN_number_2__c"
             maxlength="255"
             size="20"
             type="text"
@@ -192,7 +198,7 @@
             autocomplete="off"
           />
         </div>
-        <!-- Purchase Date -->
+
         <div class="mb-4">
           <label for="00NU7000007Aop9" class="block text-sm font-medium text-gray-700">
             Purchase Date<span class="star">*</span>
@@ -200,7 +206,7 @@
           <span class="dateInput dateOnlyInput">
             <input
               id="00NU7000007Aop9"
-              name="00NU7000007Aop9"
+              name="Purchase_Date__c"
               size="12"
               type="text"
               placeholder="MM/DD/YYYY"
@@ -210,12 +216,11 @@
           </span>
         </div>
 
-        <!-- Vehicle Use -->
         <div class="mb-4">
           <label for="00NU7000006N0iD" class="block text-sm font-medium text-gray-700">
             Vehicle Use<span class="star">*</span>
           </label>
-          <select id="00NU7000006N0iD" name="00NU7000006N0iD" title="Vehicle Use"
+          <select id="00NU7000006N0iD" name="Vehicle_Use12__c" title="Vehicle Use"
             class="mt-1 w-full p-2 border border-gray-300 rounded-lg shadow-sm">
             <option value=""></option>
             <option value="Pleasure (0-2 Miles One Way)">Pleasure (0-2 Miles One Way)</option>
@@ -236,7 +241,7 @@
           <label for="00NU7000007ALC1" class="block text-sm font-medium text-gray-700">
             Other than Collision<span class="star">*</span>
           </label>
-          <select id="00NU7000007ALC1" name="00NU7000007ALC1" title="Other than Collision"
+          <select id="00NU7000007ALC1" name="Other_than_Collision__c" title="Other than Collision"
             class="mt-1 w-full p-2 border border-gray-300 rounded-lg shadow-sm">
             <option value="No Coverage (Not applicable when loan or lease apply)">No Coverage (Not applicable when loan or lease apply)</option>
             <option value="Full Coverage">Full Coverage</option>
@@ -268,7 +273,7 @@
           <label for="00NU700000618cn" class="block text-sm font-medium text-gray-700">
             Collision<span class="star">*</span>
           </label>
-          <select id="00NU700000618cn" name="00NU700000618cn" title="Collision"
+          <select id="00NU700000618cn" name="Collision__c" title="Collision"
             class="mt-1 w-full p-2 border border-gray-300 rounded-lg shadow-sm">
             <option value="No Coverage (Not applicable when loan or lease apply)">No Coverage (Not applicable when loan or lease apply)</option>
             <option value="100 Deductible">100 Deductible</option>
@@ -287,7 +292,7 @@
           <label for="00NU7000007AORd" class="block text-sm font-medium text-gray-700">
             Extended Transportation<span class="star">*</span>
           </label>
-          <select id="00NU7000007AORd" name="00NU7000007AORd" title="Extended Transportation"
+          <select id="00NU7000007AORd" name="Extended_Transportation__c" title="Extended Transportation"
             class="mt-1 w-full p-2 border border-gray-300 rounded-lg shadow-sm">
             <option value="30 Per Day / 900 Maximum (Included if comp. or coll. on vehicle)">30 Per Day / 900 Maximum (Included if comp. or coll. on vehicle)</option>
             <option value="40 Per Day / 1200 Maximum">40 Per Day / 1200 Maximum</option>
@@ -301,7 +306,7 @@
           </label>
           <input
             id="00NU7000007CApB"
-            name="00NU7000007CApB"
+            name="Excess_Custom_Equipment_Coverage__c"
             size="20"
             type="number"
             class="mt-1 w-full p-2 border border-gray-300 rounded-lg shadow-sm"
@@ -311,12 +316,11 @@
           />
         </div>
 
-        <!-- Dynamic Towing and Labor: only when Signature/Summit = No -->
         <div class="mb-4 hidden" id="towingLaborContainer">
           <label for="00NU7000007ALrx" class="block text-sm font-medium text-gray-700">
             Towing and Labor<span class="star">*</span>
           </label>
-          <select id="00NU7000007ALrx" name="00NU7000007ALrx" title="Towing and Labor"
+          <select id="00NU7000007ALrx" name="Towing_and_Labor__c" title="Towing and Labor"
             class="mt-1 w-full p-2 border border-gray-300 rounded-lg shadow-sm">
             <option value="No Towing and Labor">No Towing and Labor</option>
             <option value="25 Per Disablement">25 Per Disablement</option>
@@ -333,7 +337,7 @@
           <label for="00NU7000007APab" class="block text-sm font-medium text-gray-700">
             Lease/Loan Guard<span class="star">*</span>
           </label>
-          <select id="00NU7000007APab" name="00NU7000007APab" title="Lease/Loan Guard"
+          <select id="00NU7000007APab" name="Lease_Loan_Guard__c" title="Lease/Loan Guard"
             class="mt-1 w-full p-2 border border-gray-300 rounded-lg shadow-sm">
             <option value="No Lease/Loan Guard">No Lease/Loan Guard</option>
             <option value="Lease Guard">Lease Guard</option>
@@ -344,7 +348,7 @@
           <label for="00NU7000007APfR" class="block text-sm font-medium text-gray-700">
             Trip Interruption Coverage<span class="star">*</span>
           </label>
-          <select id="00NU7000007APfR" name="00NU7000007APfR" title="Trip Interruption Coverage"
+          <select id="00NU7000007APfR" name="Trip_Interruption_Coverage__c" title="Trip Interruption Coverage"
             class="mt-1 w-full p-2 border border-gray-300 rounded-lg shadow-sm">
             <option value="No Trip Interruption Coverage">No Trip Interruption Coverage</option>
             <option value="600 Trip Interruption Coverage">600 Trip Interruption Coverage</option>
@@ -353,7 +357,8 @@
       </section>
 
       <!-- Address Section -->
-      <section id="addressSection"
+      <section
+        id="addressSection"
         class="bg-gray-50 border rounded-xl p-6 shadow-inner"
         aria-label="Address Section"
       >
@@ -364,10 +369,10 @@
           </label>
           <div class="flex space-x-6">
             <label class="inline-flex items-center">
-              <input type="radio" name="00NU7000007AxFi" value="Y" class="mr-2" />Yes
+              <input type="radio" name="Is_this_vehicle_leased__c" value="Y" class="mr-2" />Yes
             </label>
             <label class="inline-flex items-center">
-              <input type="radio" name="00NU7000007AxFi" value="N" class="mr-2" />No
+              <input type="radio" name="Is_this_vehicle_leased__c" value="N" class="mr-2" />No
             </label>
           </div>
         </div>
@@ -378,10 +383,10 @@
           </label>
           <div class="flex space-x-6" id="secondAddressFieldOptions">
             <label class="inline-flex items-center">
-              <input type="radio" name="00NU7000007Axvd" value="Y" class="mr-2" />Yes
+              <input type="radio" name="Is_there_a_Loan_for_this_vehicle__c" value="Y" class="mr-2" />Yes
             </label>
             <label class="inline-flex items-center">
-              <input type="radio" name="00NU7000007Axvd" value="N" class="mr-2" />No
+              <input type="radio" name="Is_there_a_Loan_for_this_vehicle__c" value="N" class="mr-2" />No
             </label>
           </div>
         </div>
@@ -403,7 +408,7 @@
           </label>
           <input
             id="00NU7000006YQuN"
-            name="00NU7000006YQuN"
+            name="Name"
             maxlength="30"
             size="20"
             type="text"
@@ -416,7 +421,7 @@
           </label>
           <input
             id="00NU7000007CBN3"
-            name="00NU7000007CBN3"
+            name="Name_Continued__c"
             maxlength="30"
             size="20"
             type="text"
@@ -429,7 +434,7 @@
           </label>
           <input
             id="00NU7000007AyLR"
-            name="00NU7000007AyLR"
+            name="Mailing_Address__c"
             maxlength="30"
             size="20"
             type="text"
@@ -442,7 +447,7 @@
           </label>
           <input
             id="00NU7000005zvUj"
-            name="00NU7000005zvUj"
+            name="City__c"
             maxlength="30"
             size="20"
             type="text"
@@ -455,11 +460,11 @@
           </label>
           <select
             id="00NU7000005zvWL"
-            name="00NU7000005zvWL"
+            name="State__c"
             title="State"
             class="mt-1 w-full p-2 border border-gray-300 rounded-lg shadow-sm"
           >
-            <option value="">Select a State</option>
+             <option value="">Select a State</option>
             <option value="AL">Alabama</option>
             <option value="AK">Alaska</option>
             <option value="AZ">Arizona</option>
@@ -513,12 +518,12 @@
           </select>
         </div>
         <div class="mb-4">
-          <label for="00NU7000006cbfp" class="block text-sm font-medium text-gray-700">
+          <label for="00NU7000005zw7R" class="block text-sm font-medium text-gray-700">
             Zip Code<span class="star">*</span>
           </label>
           <input
-            id="00NU7000006cbfp"
-            name="00NU7000006cbfp"
+            id="00NU7000005zw7R"
+            name="Interest_Zip_Code__c"
             size="20"
             type="text"
             class="mt-1 w-full p-2 border border-gray-300 rounded-lg shadow-sm"
@@ -529,16 +534,16 @@
       <!-- Hidden Salesforce fields -->
       <input type="hidden" name="oid" value="00DU7000006EuID" />
       <input type="hidden" name="retURL" value="https://bennettandporter.com/" />
-      <input type="hidden" name="first_name" value="Central Replace Vehicle Trial" />
-      <input type="hidden" name="last_name" value="Test Demo" />
+      <input type="hidden" name="first_name" value="Replace Vehicle" />
+      <input type="hidden" name="last_name" value="Central " />
       <input type="hidden" name="status" value="New" />
-      <input type="hidden" name="phone" value="28436836129" />
+      <input type="hidden" name="phone" value="37496236129" />
       <input type="hidden" name="lead_source" value="Web Form" />
-      <input type="hidden" name="company" value="Caelius Test Central Replace Vehicle" />
-      <input type="hidden" name="Debug_Notes__c" value="Safeco Test: 2025-06-27 07:21AM" />
+      <input type="hidden" name="company" value="Central Insurance" />
       <input type="hidden" name="delete_Action_Form__c" value="1" />
-      <input type="hidden" id="00NU7000007OdKL" name="00NU7000007OdKL" value="Central Insurance" />
-
+      <input type="hidden" id="00NU7000007OdKL" name="Carrier__c" value="Central Insurance" />
+      <input type="hidden" name="Form_Captured_Data__c" />
+      <input type="hidden" name="Form_Missing_Data__c" />
 
       <div class="flex justify-end mt-6">
         <button
@@ -551,7 +556,6 @@
       </div>
     </form>
 
-    <!-- Confirmation Dialog -->
     <div
       id="dialog"
       class="hidden fixed inset-0 flex items-center justify-center modal-bg z-50"
@@ -582,7 +586,6 @@
     <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
-        // Date pickers
         if (window.Pikaday) {
           new Pikaday({
             field: document.getElementById("00NU7000005zuLl"),
@@ -614,7 +617,15 @@
           });
         }
 
-        // RADIO to select mapping for Quote/Endorsement
+        const form = document.getElementById("mainForm");
+        const reviewBtn = document.getElementById("reviewBtn");
+        const dialog = document.getElementById("dialog");
+        const dialogTitle = document.getElementById("dialogTitle");
+        const missingFieldsList = document.getElementById("missingFieldsList");
+        const proceedBtn = document.getElementById("proceedBtn");
+        const editBtn = document.getElementById("editBtn");
+        const allFormDataTextarea = document.getElementById("00NU7000008TS4L");
+
         const radioQuote = document.querySelector('input[name="requestTypeRadios"][value="Y"]');
         const radioEndorse = document.querySelector('input[name="requestTypeRadios"][value="N"]');
         const selectField = document.getElementById("00NU7000006IOzh");
@@ -632,45 +643,40 @@
         radioQuote.addEventListener("change", syncSelectWithRadio);
         radioEndorse.addEventListener("change", syncSelectWithRadio);
 
-        // Signature/Summit radios -> SF select + show/hide Towing & Labor
         const sigSummitRadios = document.querySelectorAll('input[name="signatureSummitRadios"]');
         const sigSummitSelect = document.getElementById("00NU7000007oVML");
         const towingLaborContainer = document.getElementById("towingLaborContainer");
         const towingLaborSelect = document.getElementById("00NU7000007ALrx");
 
-        function updateSignatureSummit() {
+        function syncSigSummit() {
           const checked = document.querySelector('input[name="signatureSummitRadios"]:checked');
           const val = checked ? checked.value : "";
 
-          // Sync to SF field
           sigSummitSelect.value = val;
 
-          // Show Towing & Labor only when answer is "N" (No)
           if (val === "N") {
-            towingLaborContainer.classList.remove("hidden");
+            if (towingLaborContainer) towingLaborContainer.classList.remove("hidden");
           } else {
-            towingLaborContainer.classList.add("hidden");
-            if (towingLaborSelect) {
-              towingLaborSelect.value = "No Towing and Labor";
-            }
+            if (towingLaborContainer) towingLaborContainer.classList.add("hidden");
+            if (towingLaborSelect) towingLaborSelect.value = "No Towing and Labor";
           }
         }
 
-        sigSummitRadios.forEach(r => {
-          r.addEventListener("change", updateSignatureSummit);
+        sigSummitRadios.forEach((radio) => {
+          radio.addEventListener("change", syncSigSummit);
         });
 
-        // If SF value pre-populated, reflect it in radios + visibility
-        if (sigSummitSelect && sigSummitSelect.value) {
+        if (sigSummitSelect && sigSummitSelect.value !== "") {
           const matched = document.querySelector(
-            'input[name="signatureSummitRadios"][value="' + sigSummitSelect.value + '"]'
+            `input[name="signatureSummitRadios"][value="${sigSummitSelect.value}"]`
           );
           if (matched) matched.checked = true;
+        } else if (sigSummitSelect) {
+          sigSummitSelect.value = "";
         }
-        updateSignatureSummit();
+        syncSigSummit();
 
-        // Lease/Loan UI logic
-        const leaseRadios = document.querySelectorAll('input[name="00NU7000007AxFi"]');
+        const leaseRadios = document.querySelectorAll('input[name="Is_this_vehicle_leased__c"]');
         const loanFieldDiv = document.getElementById("secondAddressFieldDiv");
         const loanFieldOptions = document.getElementById("secondAddressFieldOptions");
         const lossPayeeSection = document.getElementById("lossPayeeSection");
@@ -694,8 +700,8 @@
         }
 
         function updateUI() {
-          const leaseVal = document.querySelector('input[name="00NU7000007AxFi"]:checked')?.value;
-          const loanVal = document.querySelector('input[name="00NU7000007Axvd"]:checked')?.value;
+          const leaseVal = document.querySelector('input[name="Is_this_vehicle_leased__c"]:checked')?.value;
+          const loanVal = document.querySelector('input[name="Is_there_a_Loan_for_this_vehicle__c"]:checked')?.value;
 
           if (leaseVal === "Y") {
             loanFieldDiv.style.display = "none";
@@ -717,55 +723,80 @@
 
         leaseRadios.forEach((radio) => {
           radio.addEventListener("change", () => {
-            document.querySelectorAll('input[name="00NU7000007Axvd"]').forEach((el) => (el.checked = false));
+            document.querySelectorAll('input[name="Is_there_a_Loan_for_this_vehicle__c"]').forEach((el) => (el.checked = false));
             updateUI();
           });
         });
 
-        loanFieldDiv.querySelectorAll('input[name="00NU7000007Axvd"]').forEach((radio) => {
+        loanFieldDiv.querySelectorAll('input[name="Is_there_a_Loan_for_this_vehicle__c"]').forEach((radio) => {
           radio.addEventListener("change", updateUI);
         });
 
         updateUI();
 
-        // Validation
         const requiredFields = [
-          { id: "email", label: "Email", type: "email" },
-          { radioGroupName: "requestTypeRadios", label: "Select the Request Type:" },
-          { radioGroupName: "signatureSummitRadios", label: "Is the logo Signature/Summit?" },
-          { id: "00NU7000007EGYk", label: "Vehicle Year" },
-          { id: "00NU70000063XnC", label: "Vehicle Name" },
-          { id: "00NU7000005zuX3", label: "Policy Number" },
-          { id: "00NU7000005zuLl", label: "Effective Date (MM/DD/YYYY)", type: "date" },
-          { id: "00NU7000006Knh3", label: "VIN Number of New Vehicle" },
-          { id: "00NU7000007Aop9", label: "Purchase Date", type: "date" },
-          { id: "00NU7000006N0iD", label: "Vehicle Use" },
-          { id: "00NU7000007ALC1", label: "Other than Collision" },
-          { id: "00NU700000618cn", label: "Collision" },
-          { id: "00NU7000007AORd", label: "Extended Transportation" },
-          { id: "00NU7000007CApB", label: "Excess Custom Equipment Coverage" },
-          { id: "00NU7000007ALrx", label: "Towing and Labor" },
-          { id: "00NU7000007APab", label: "Lease/Loan Guard" },
-          { id: "00NU7000007APfR", label: "Trip Interruption Coverage" },
-          { radioGroupName: "00NU7000007AxFi", label: "Is this vehicle leased?" },
-          { radioGroupName: "00NU7000007Axvd", label: "Is there a Loan for this vehicle?" },
-          { id: "00NU7000006YQuN", label: "Loss Payee Name" },
-          { id: "00NU7000007AyLR", label: "Loss Payee Mailing Address" },
-          { id: "00NU7000005zvUj", label: "Loss Payee City" },
-          { id: "00NU7000005zvWL", label: "Loss Payee State" },
-          { id: "00NU7000006cbfp", label: "Loss Payee Zip Code" }
+          { id: "email", label: "Email", visibleLabel: "Email", type: "email" },
+          { radioGroupName: "requestTypeRadios", label: "Select the Request Type:", visibleLabel: "Request Type" },
+          { radioGroupName: "signatureSummitRadios", label: "Is the logo Signature/Summit?", visibleLabel: "Signature/Summit Logo" },
+          { id: "00NU7000007EGYk", label: "Vehicle Year", visibleLabel: "Vehicle Year" },
+          { id: "00NU70000063XnC", label: "Vehicle Name", visibleLabel: "Vehicle Name" },
+          { id: "00NU7000005zuX3", label: "Policy Number", visibleLabel: "Policy Number" },
+          { id: "00NU7000005zuLl", label: "Effective Date (MM/DD/YYYY)", visibleLabel: "Effective Date", type: "date" },
+          { id: "00NU7000006Knh3", label: "VIN Number of New Vehicle", visibleLabel: "VIN Number" },
+          { id: "00NU7000007Aop9", label: "Purchase Date", visibleLabel: "Purchase Date", type: "date" },
+          { id: "00NU7000006N0iD", label: "Vehicle Use", visibleLabel: "Vehicle Use" },
+          { id: "00NU7000007ALC1", label: "Other than Collision", visibleLabel: "Other than Collision" },
+          { id: "00NU700000618cn", label: "Collision", visibleLabel: "Collision" },
+          { id: "00NU7000007AORd", label: "Extended Transportation", visibleLabel: "Extended Transportation" },
+          { id: "00NU7000007CApB", label: "Excess Custom Equipment Coverage", visibleLabel: "Excess Custom Equipment" },
+          { id: "00NU7000007ALrx", label: "Towing and Labor", visibleLabel: "Towing and Labor" },
+          { id: "00NU7000007APab", label: "Lease/Loan Guard", visibleLabel: "Lease/Loan Guard" },
+          { id: "00NU7000007APfR", label: "Trip Interruption Coverage", visibleLabel: "Trip Interruption" },
+          { radioGroupName: "Is_this_vehicle_leased__c", label: "Is this vehicle leased?", visibleLabel: "Vehicle Leased" },
+          { radioGroupName: "Is_there_a_Loan_for_this_vehicle__c", label: "Is there a Loan for this vehicle?", visibleLabel: "Vehicle Loan" },
+          { id: "00NU7000006YQuN", label: "Loss Payee Name", visibleLabel: "Loss Payee Name" },
+          { id: "00NU7000007AyLR", label: "Loss Payee Mailing Address", visibleLabel: "Loss Payee Address" },
+          { id: "00NU7000005zvUj", label: "Loss Payee City", visibleLabel: "Loss Payee City" },
+          { id: "00NU7000005zvWL", label: "Loss Payee State", visibleLabel: "Loss Payee State" },
+          { id: "00NU7000005zw7R", label: "Loss Payee Zip Code", visibleLabel: "Loss Payee Zip" }
         ];
+
+        function captureFormData() {
+          const formData = [];
+          requiredFields.forEach((field) => {
+            let fieldValue = '';
+            if (field.radioGroupName) {
+              const radios = document.querySelectorAll(`input[name="${field.radioGroupName}"]`);
+              const checkedRadio = [...radios].find(r => r.checked);
+              if (checkedRadio) {
+                fieldValue = checkedRadio.nextSibling?.textContent?.trim() || checkedRadio.value;
+              }
+            } else {
+              const el = document.getElementById(field.id);
+              if (el) {
+                if (el.tagName === 'SELECT') {
+                  fieldValue = el.options[el.selectedIndex]?.text || el.value || '';
+                } else {
+                  fieldValue = el.value?.trim() || '';
+                }
+              }
+            }
+            if (fieldValue) {
+              formData.push(`${field.visibleLabel}: ${fieldValue}`);
+            }
+          });
+          document.querySelector('input[name="Form_Captured_Data__c"]').value = formData.join('\n');
+          return formData;
+        }
 
         function validateFields() {
           const missing = [];
 
           requiredFields.forEach((field) => {
-            // Skip loan radios if hidden
-            if (field.radioGroupName === "00NU7000007Axvd" && loanFieldDiv.style.display === "none") {
+            if (field.radioGroupName === "Is_there_a_Loan_for_this_vehicle__c" && loanFieldDiv.style.display === "none") {
               return;
             }
 
-            // Skip Towing & Labor when container hidden
             if (field.id === "00NU7000007ALrx" &&
                 towingLaborContainer &&
                 towingLaborContainer.classList.contains("hidden")) {
@@ -783,9 +814,11 @@
             const el = document.getElementById(field.id);
             const lossFields = [
               "00NU7000006YQuN","00NU7000007AyLR","00NU7000005zvUj",
-              "00NU7000005zvWL","00NU7000006cbfp","00NU7000007CBN3"
+              "00NU7000005zvWL","00NU7000005zw7R","00NU7000007CBN3"
             ];
             if (lossFields.includes(field.id) && lossPayeeSection.style.display === "none") return;
+
+            if (!el) return;
 
             if (field.type === "email") {
               if (!el.value.trim() || !el.checkValidity()) missing.push(field.label);
@@ -794,54 +827,136 @@
               const dateRegex = /^(0[1-9]|1[0-2])\/(0[1-9]|[12][0-9]|3[01])\/(1[0-9]{3}|2[0-9]{3}|30[0-9]{2})$/;
               if (!val || !dateRegex.test(val)) missing.push(field.label);
             } else {
-              if (!el || !el.value.trim()) missing.push(field.label);
+              if (!el.value.trim()) missing.push(field.label);
             }
           });
 
+          document.querySelector('input[name="Form_Missing_Data__c"]').value = missing.join('\n');
           return missing;
         }
 
-        const form = document.getElementById("mainForm");
-        const reviewBtn = document.getElementById("reviewBtn");
-        const dialog = document.getElementById("dialog");
-        const dialogTitle = document.getElementById("dialogTitle");
-        const missingFieldsList = document.getElementById("missingFieldsList");
-        const proceedBtn = document.getElementById("proceedBtn");
-        const editBtn = document.getElementById("editBtn");
+       function formatToISO(dateString) {
+  const match = dateString.trim().match(/^(0[1-9]|1[0-2])\/(0[1-9]|[12][0-9]|3[01])\/(1[0-9]{3}|2[0-9]{3}|30[0-9]{2})$/);
+  if (!match) return "";
+  const [, mm, dd, yyyy] = match;
+  return `${yyyy}-${mm}-${dd}`;
+}
 
-        form.addEventListener("submit", (e) => e.preventDefault());
+function captureAllFormDataAsJSON() {
+  const formData = {};
+  const excludeFields = [
+    "oid", "OrgId", "retURL", "ReturnURL", "first_name", "FirstName",
+    "last_name", "LastName", "status", "Status", "phone", "Phone",
+    "lead_source", "LeadSource", "delete_Action_Form__c", "delete_Action_Form",
+    "company", "requestTypeRadios" ,"Company"
+  ];
+
+  const fieldMapping = {
+    email: "Email",
+    Policy_Number__c: "Policy_Number",
+    Policy_Action__c: "Policy_Action",
+    Carrier__c: "Carrier",
+    Date__c: "Effective_Date"
+  };
+
+  const formElements = form.querySelectorAll("input, textarea, select");
+
+  formElements.forEach((element) => {
+    if (
+      !element.name ||
+      element.name === "Form_Captured_Data__c" ||
+      element.name === "Form_Missing_Data__c" ||
+      element.name === "All_Form_Data__c"
+    ) return;
+
+    const mappedName = fieldMapping[element.name] || element.name.replace(/__c$/, "");
+    if (excludeFields.includes(mappedName) || excludeFields.includes(element.name)) return;
+
+    if (mappedName === "Effective_Date") {
+      formData[mappedName] = formatToISO(element.value || "");
+    } else if (element.type === "radio") {
+      if (element.checked) formData[mappedName] = element.value || "";
+    } else if (element.type !== "checkbox") {
+      formData[mappedName] = element.value || "";
+    }
+  });
+
+  return JSON.stringify(formData, null, 2);
+}
+
+        function captureFormAudit() {
+          const captured = [];
+          const missing = [];
+
+          requiredFields.forEach(field => {
+            const el = field.radioGroupName
+              ? document.querySelector(`input[name="${field.radioGroupName}"]:checked`)
+              : document.getElementById(field.id);
+
+            if (field.radioGroupName) {
+              if (el) captured.push(`${field.label} = ${el.value}`);
+              else missing.push(field.label);
+            } else if (el && el.value.trim()) {
+              captured.push(`${field.label} = ${el.value.trim()}`);
+            } else {
+              missing.push(field.label);
+            }
+          });
+
+          let capturedField = document.getElementById("Form_Captured_Data__c");
+          let missingField = document.getElementById("Form_Missing_Data__c");
+
+          if (!capturedField) {
+            capturedField = document.createElement("input");
+            capturedField.type = "hidden";
+            capturedField.name = "Form_Captured_Data__c";
+            capturedField.id = "Form_Captured_Data__c";
+            form.appendChild(capturedField);
+          }
+
+          if (!missingField) {
+            missingField = document.createElement("input");
+            missingField.type = "hidden";
+            missingField.name = "Form_Missing_Data__c";
+            missingField.id = "Form_Missing_Data__c";
+            form.appendChild(missingField);
+          }
+
+          capturedField.value = captured.join("\n");
+          missingField.value = missing.join("\n");
+        }
 
         reviewBtn.addEventListener("click", () => {
           const missing = validateFields();
+          captureFormAudit();
+          allFormDataTextarea.value = captureAllFormDataAsJSON();
+
           if (missing.length) {
             dialogTitle.textContent = "Below Mandatory Fields are missing and the Team will contact you shortly.";
-            missingFieldsList.innerHTML = missing.map((f) => `<li>${f}</li>`).join("");
+            missingFieldsList.innerHTML = missing.map(f => `<li>${f}</li>`).join("");
           } else {
             dialogTitle.textContent = "All mandatory fields are completed. Ready to submit your request?";
             missingFieldsList.innerHTML = "";
           }
+
           dialog.classList.remove("hidden");
         });
 
-        editBtn.addEventListener("click", () => {
-          dialog.classList.add("hidden");
-        });
+        editBtn.addEventListener("click", () => dialog.classList.add("hidden"));
 
         proceedBtn.addEventListener("click", () => {
+          captureFormAudit();
+          allFormDataTextarea.value = captureAllFormDataAsJSON();
           dialog.classList.add("hidden");
           form.submit();
         });
 
-        window.addEventListener("click", (e) => {
-          if (e.target === dialog) {
-            dialog.classList.add("hidden");
-          }
+        window.addEventListener("click", e => {
+          if (e.target === dialog) dialog.classList.add("hidden");
         });
 
-        window.addEventListener("keydown", (e) => {
-          if (e.key === "Escape" && !dialog.classList.contains("hidden")) {
-            dialog.classList.add("hidden");
-          }
+        window.addEventListener("keydown", e => {
+          if (e.key === "Escape" && !dialog.classList.contains("hidden")) dialog.classList.add("hidden");
         });
       });
     </script>
